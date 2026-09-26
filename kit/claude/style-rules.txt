@@ -1,0 +1,12 @@
+# style-rules.txt — the words and forms stylecheck.py flags.
+# One rule a line:  KIND <tab> regex <tab> why
+# KIND is WORD, ASSURANCE or THROAT; add ! (WORD!) to make the regex case-sensitive.
+# Starts empty. Add a line each time a word you dislike reaches a page.
+#
+# stylecheck: allow-start
+# Examples, commented out:
+#WORD	\bseamless(ly)?\b	filler
+#WORD	\bleverag(e|ed|es|ing)\b	say "use"
+#ASSURANCE	\bno (tracking|cookies|ads)\b	absence sold as a virtue
+#THROAT	^\s*(Great question|Sure!|Absolutely)	throat clearing
+# stylecheck: allow-end

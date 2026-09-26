@@ -1,0 +1,38 @@
+==============================================================================
+QUEUE — everything waiting on you, sorted by what it needs
+==============================================================================
+Answer with numbers: "A all", "A1", "C2: b". I rewrite this file after every answer.
+The one screen is STATE.txt beside this file.
+
+Every C item carries a ⏳ line: what happens if you never answer, and the date.
+The default is the cheaper, quieter branch. Items marked "no default — yours" wait.
+
+
+------------------------------------------------------------------------------
+A — SAY GO.  Built, tested, gates pass. One word and I deploy.
+------------------------------------------------------------------------------
+
+A1  Example: new page for the shop site, gates green.
+    Preview: ~/Desktop/go/example-preview
+
+
+------------------------------------------------------------------------------
+B — YOUR HANDS.  Only you can do these.
+------------------------------------------------------------------------------
+
+B1  Example: sign in to the domain registrar once so the DNS change can land.
+
+
+------------------------------------------------------------------------------
+C — DECIDING.
+------------------------------------------------------------------------------
+
+C1  Example: weekly newsletter — (a) monthly, (b) weekly, (c) drop it.
+    Cost: (b) is four drafts a month to read. Worst case: (c) loses the list's habit.
+    ⏳ if silent: (a) monthly · fires 2030-01-01
+
+C2  Example: anything you marked class 3.
+    no default — yours
+
+
+DORMANT — struck items
