@@ -1,0 +1,14 @@
+# The One Man Sideshow
+
+> A sourced city directory in thirty-five hours, run by one person and a fleet of AI agents. Made by Hongdam (หงส์ดำ), Chiang Rai. Contact: nan@motdang.net
+
+## Offer
+- The kit, do it yourself: free, https://github.com/NaNoBotCo/onemansideshow
+- Set up for you, training included: 25,000 THB for Thai companies; 25,000 USD for everyone else
+- For a town: a directory of the town, a LINE desk, campaigns on a calendar, an assistant on the town's records; price by email
+
+## Proof, measured September 2026
+- https://motdang.net/ : 88,888 places in Chiang Mai and Chiang Rai
+- https://motdang.net/brief : the method and the numbers
+- https://ask.motdang.net/ : the assistant
+- https://nanobotco.github.io/index/ : 20 sites, 99,303 pages, 302,396 records, each count with its method

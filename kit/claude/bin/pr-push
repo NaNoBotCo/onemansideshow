@@ -1,0 +1,29 @@
+#!/bin/sh
+# pr-push — publish local main through a pull request, then merge it.
+# usage: pr-push [repo-dir] [title]      
+set -e
+cd "${1:-.}"
+title="${2:-}"
+base=$(git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||'); base=${base:-main}
+cur=$(git symbolic-ref --short HEAD)
+[ "$cur" = "$base" ] || { echo "pr-push: on $cur, not $base" >&2; exit 2; }
+git fetch -q origin "$base"
+ahead=$(git rev-list --count "origin/$base..$base")
+[ "$ahead" -gt 0 ] || { echo "pr-push: nothing to publish"; exit 0; }
+behind=$(git rev-list --count "$base..origin/$base")
+[ "$behind" -eq 0 ] || { echo "pr-push: $base is $behind behind origin/$base — merge that first" >&2; exit 3; }
+[ -n "$title" ] || title=$(git log -1 --format=%s)
+slug=$(printf %s "$title" | tr -cs 'A-Za-z0-9' '-' | tr 'A-Z' 'a-z' | cut -c1-40 | sed 's/-*$//;s/^-*//')
+br="bot/$(date +%Y%m%d-%H%M%S)-$slug"
+out=$(git push -q origin "$base:refs/heads/$br" 2>&1) || { printf "%s\n" "$out" >&2; exit 5; }
+body=$(git log --reverse --format='- %s' "origin/$base..$base")
+url=$(gh pr create --base "$base" --head "$br" --title "$title" --body "$body")
+n=0
+until gh pr merge "$url" --merge >/dev/null 2>&1; do
+  n=$((n+1)); [ $n -lt 6 ] || { echo "pr-push: could not merge $url" >&2; exit 4; }
+  sleep 3
+done
+gh api -X DELETE "repos/{owner}/{repo}/git/refs/heads/$br" >/dev/null 2>&1 || true
+git fetch -q origin "$base"
+git merge -q --ff-only "origin/$base"
+echo "merged $url ($ahead commit$([ "$ahead" -eq 1 ] || echo s))"
